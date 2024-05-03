@@ -17,7 +17,6 @@ class UserController extends Controller
         $user = Auth::user();
         $colorCount =  UserData::where('favorit_color', $request->favorite_color)->count()+1;
         $num = UserData::where('user_id', $user->id)->count()+1;
-        // $dataRegistration = User::get('created_at',)->where('user_id', $user->id);
  
         $timeDiff =  strtotime($request->date_birthday) - strtotime($user->created_at);
         DB::transaction(function() use($user,$colorCount, $num,$timeDiff, $request){
