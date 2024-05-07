@@ -27,11 +27,11 @@ Route::post('/test', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::get('/home', function(){
+    return view("home");
+})->name('home');
 Route::middleware('auth')->group(function () {
-    Route::get('/home', function(){
-        return view("home");
-    })->name('home');
+
     Route::post('/users/store', [UserController::class, 'store'])->name('store');
     Route::get('/users', [IndexController::class, '__invoke'])->name('users');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

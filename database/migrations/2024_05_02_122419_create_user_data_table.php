@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string("favorit_color");
-            $table->timestamp("date_birthday");
+            $table->date("date_birthday");
             $table->timestamps();
 
             $table->foreign("user_id")->references("id")->on("users");

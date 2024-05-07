@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->integer("color_price");
-            $table->integer("timestamp_from_birthday");
+            $table->timestamp("timestamp_from_birthday");
             $table->timestamps();
 
             $table->foreign("user_id")->references("id")->on("users");

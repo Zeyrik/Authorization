@@ -18,8 +18,9 @@ class UserController extends Controller
         $colorCount =  UserData::where('favorit_color', $request->favorite_color)->count()+1;
         $num = UserData::where('user_id', $user->id)->count()+1;
  
-        $timeDiff =  strtotime($request->date_birthday) - strtotime($user->created_at);
-        DB::transaction(function() use($user,$colorCount, $num,$timeDiff, $request){
+        $timeDiff = strtotime($user->created_at)-strtotime($request->date_birthday);
+        $timestamp = Carbon::createFromTimestamp($timeDiff);
+        DB::transaction(function() use($user,$colorCount, $num,$timestamp, $request){
             
             UserData::create([
                 "user_id"=>$user->id,
@@ -30,7 +31,7 @@ class UserController extends Controller
             UserInvoices::create([
                 "user_id"=>$user->id,
                 "color_price"=>$colorCount,
-                'timestamp_from_birthday'=>abs($timeDiff)
+                'timestamp_from_birthday'=>$timestamp
             ]);
 
         });
