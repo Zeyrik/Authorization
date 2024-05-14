@@ -19,6 +19,9 @@
                     <x-nav-link :href="route('users')">
                         Все пользователи
                     </x-nav-link>
+                    <x-nav-link :href="route('shop')">
+                        Магазин
+                    </x-nav-link>
  
                 </div>
             </div>

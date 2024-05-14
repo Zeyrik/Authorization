@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Users\IndexController;
+use App\Http\Controllers\Shop\IndexController as ShopController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,6 +31,7 @@ Route::get('/dashboard', function () {
 Route::get('/home', function(){
     return view("home");
 })->name('home');
+Route::get('/shop', [ShopController::class, '__invoke'])->name('shop');
 Route::middleware('auth')->group(function () {
 
     Route::post('/users/store', [UserController::class, 'store'])->name('store');
